@@ -1,8 +1,10 @@
 package ru.filimonov.hotelbusinessdatagenerator.generator;
 
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Time;
 import java.util.List;
 import java.util.Random;
@@ -36,7 +38,8 @@ public class DataGenerator {
     }
 
     public static String generateImageUrl() throws IOException {
-        final List<String> urlsList = Files.readAllLines(Paths.get("src/main/resources/room.txt"));
+        File resource = new ClassPathResource("room.txt").getFile();
+        final List<String> urlsList = Files.readAllLines(resource.toPath());
         return urlsList.get(r.nextInt(urlsList.size()));
     }
 

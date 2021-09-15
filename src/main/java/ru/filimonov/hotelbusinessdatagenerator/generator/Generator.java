@@ -2,6 +2,7 @@ package ru.filimonov.hotelbusinessdatagenerator.generator;
 
 
 import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
 import lombok.AllArgsConstructor;
 import ru.filimonov.hotelbusinessdatagenerator.domain.*;
 import ru.filimonov.hotelbusinessdatagenerator.service.*;
@@ -66,8 +67,9 @@ public class Generator {
     public void generateClient(int clientCount) {
         for (int i = 0; i < clientCount; i++) {
             Client client = new Client();
-            client.setFirstname(faker.name().firstName());
-            client.setLastname(faker.name().lastName());
+            Name name = faker.name();
+            client.setFirstname(name.firstName());
+            client.setLastname(name.lastName());
             client.setBirthdate(new Date(faker.date().birthday().getTime()));
             client.setAddress(faker.address().fullAddress());
             client.setPhone(generatePhone());
@@ -78,8 +80,9 @@ public class Generator {
     public void generateEmployee(int employeeCount) {
         for (int i = 0; i < employeeCount; i++) {
             Employee employee = new Employee();
-            employee.setFirstname(faker.name().firstName());
-            employee.setLastname(faker.name().lastName());
+            Name name = faker.name();
+            employee.setFirstname(name.firstName());
+            employee.setLastname(name.lastName());
             employee.setBirthdate(new Date(faker.date().birthday().getTime()));
             employee.setPhone(generatePhone());
             employee.setPosition(positionService.findAll()
